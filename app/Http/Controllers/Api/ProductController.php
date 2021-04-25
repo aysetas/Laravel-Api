@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-         return Product::all();
+         //return Product::all();
+        return response(Product::all() , 200);
     }
 
     /**
@@ -26,7 +27,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        return $input;
     }
 
     /**
@@ -47,9 +49,16 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product=Product::find($id);
+        $product->update($request->post());
+
+        return response([
+            'data' => $product,
+             'message' => 'Product Update'
+        ]);
+
     }
 
     /**
@@ -60,6 +69,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return response([
+            "message" =>"product silindi"
+        ]);
     }
 }
