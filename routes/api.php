@@ -22,5 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /*Route::get('/products', function (){
     return Product::factory(10)->create();
 });*/
-Route::apiResource('/product', ProductController::class);
+//Route::apiResource('/product', Api\ProductController::class);
 
+Route::apiResources([
+    'product' => 'Api\ProductController',
+    'category' => 'Api\CategoryController'
+]);
