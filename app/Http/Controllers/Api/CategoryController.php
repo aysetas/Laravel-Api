@@ -60,7 +60,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        //$input = $request->all();
+        //$category->update($input);
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+        $category->save();
+
+        return response([
+            'data' => $category,
+            'message' => 'category updated'
+        ]);
     }
 
     /**
