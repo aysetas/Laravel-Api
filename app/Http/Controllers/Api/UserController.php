@@ -57,7 +57,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-   
+        $input=$request->all();
+        $user->update($input);
+
+        return response([
+            'data' =>$user,
+            'message' =>'user updated'
+        ]);
 
     }
 
