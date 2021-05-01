@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -27,8 +28,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $input=$request->all();
-        return $input;
+
+        $input = $request->all();
+        $product = Product::create($input);
+
+        return response([
+            'data' => $product,
+            'message' => 'product created'
+        ]);
+
     }
 
     /**
@@ -49,14 +57,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        $product=Product::find($id);
-        $product->update($request->post());
+        $input = $request->all();
+        $product->update($input);
+
 
         return response([
             'data' => $product,
-             'message' => 'Product Update'
+            'message' => 'product updated'
         ]);
 
     }
