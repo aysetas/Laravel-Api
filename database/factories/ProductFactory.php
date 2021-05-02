@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ProductFactory extends Factory
@@ -22,7 +23,7 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        Product::truncate();
+
         $product_name=$this->faker->sentence(3);
         return [
             'name' => $product_name,

@@ -11,6 +11,6 @@ class Product extends Model
     protected $fillable=['name','slug','price'];
 
     public function categories(){
-        return $this->belongsToMany('App\Category', 'category_products');
+        return $this->belongsToMany(Category::class, 'category_products');
     }
 }

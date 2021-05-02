@@ -83,4 +83,8 @@ class ProductController extends Controller
             "message" =>"product silindi"
         ]);
     }
+    public function custom1(){
+        //return Product::select('id','name','price')->orderBy('created_at','desc')->take(5)->get();
+        return Product::selectRaw('id as product_id,name as product_name')->orderBy('created_at','desc')->take(5)->get(); //isimleri özelleştirmek için
+    }
 }

@@ -33,3 +33,5 @@ Route::apiResources([
     'user' =>UserController::class
 ]);
 
+Route::get('custom',[CategoryController::class,'custom']);
+Route::get('custom1' , [ProductController::class, 'custom1']);

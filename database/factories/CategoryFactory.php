@@ -22,7 +22,7 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        Category::truncate();
+
         $category_name=$this->faker->sentence(1);
         return [
             'name' => $category_name,

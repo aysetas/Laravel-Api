@@ -85,4 +85,8 @@ class CategoryController extends Controller
            "message" => "Category Silindi"
         ]);
     }
+    public function custom(){
+        return Category::pluck('name','id'); //Tek bir kolonu çekmek için kullanılır.Birden fazla çekmek içn select komutu kull.
+        //return Category::select('id','name')->orderBy('created_at','desc')->take(5)->get();
+    }
 }
