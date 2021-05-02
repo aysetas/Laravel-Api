@@ -36,4 +36,5 @@ Route::apiResources([
 Route::get('custom',[CategoryController::class,'custom']);
 Route::get('custom1' , [ProductController::class, 'custom1']);
 Route::get('custom2' , [ProductController::class, 'custom2']);
+Route::get('report1' , [ProductController::class, 'report1']);
 

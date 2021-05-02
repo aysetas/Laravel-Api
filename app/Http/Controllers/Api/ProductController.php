@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -100,5 +101,14 @@ class ProductController extends Controller
         });
 
         return $mapped->all();
+    }
+    public function report1(){
+        return DB::table('category_products as cp')
+            ->selectRaw('c.name, COUNT(*) as total')
+            ->join('categories as c', 'c.id', '=', 'cp.category_id')
+            ->join('products as p', 'p.id', '=', 'cp.product_id')
+            ->groupBy('c.name')
+            ->orderByRaw('COUNT(*) DESC')
+            ->get();
     }
 }
