@@ -87,4 +87,18 @@ class ProductController extends Controller
         //return Product::select('id','name','price')->orderBy('created_at','desc')->take(5)->get();
         return Product::selectRaw('id as product_id,name as product_name')->orderBy('created_at','desc')->take(5)->get(); //isimleri özelleştirmek için
     }
+
+    public function custom2(){
+
+        $products= Product::orderBy('created_at','desc')->take(5)->get(); //2.yöntem isimleri özelleştirmek için
+        $mapped=$products->map(function ($product){
+            return [
+                'product_id' =>$product['id'],
+                'product_name' =>$product['name'],
+                'product_price' =>$product['price'] * 1.03
+            ];
+        });
+
+        return $mapped->all();
+    }
 }
